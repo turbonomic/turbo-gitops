@@ -1,0 +1,11 @@
+apiVersion: gitops.turbonomic.io/v1alpha1
+kind: GitOps
+metadata:
+  name: gitops-sample
+spec:
+  config:
+  - commitMode: direct
+    apps:
+    - app-name-1
+    - app-name-2
+    
