@@ -42,10 +42,10 @@ spec:
                   properties:
                     apps:
                       description: Specifies the applications that the commit mode
-                        should apply to
+                        should apply to (Optional - an empty list will apply to all
+                        applications within the namespace)
                       items:
                         type: string
-                      minItems: 1
                       type: array
                     commitMode:
                       default: request
@@ -86,7 +86,7 @@ spec:
                       - username
                       type: object
                   required:
-                  - apps
+                  - commitMode
                   type: object
                 type: array
             required:

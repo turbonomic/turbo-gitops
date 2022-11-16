@@ -47,13 +47,13 @@ type Configuration struct {
 	// - "direct": actions will produce commit directly within the underlying repository without creating a pull/merge request;
 	// - "request": actions will result in a pull/merge request being creating within the underlying repository
 	// +kubebuilder:default:=request
-	CommitMode CommitMode `json:"commitMode,omitempty"`
+	CommitMode CommitMode `json:"commitMode"`
 	// Specifies the credentials for the underlying repository (CURRENTLY UNSUPPORTED)
 	// +optional
 	Credentials Credentials `json:"credentials,omitempty"`
-	// Specifies the applications that the commit mode should apply to
-	// +kubebuilder:validation:MinItems:=1
-	Applications []string `json:"apps"`
+	// Specifies the applications that the commit mode should apply to (Optional - an empty list will apply to all
+	// applications within the namespace)
+	Applications []string `json:"apps,omitempty"`
 }
 
 type Credentials struct {
