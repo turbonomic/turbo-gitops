@@ -48,7 +48,6 @@ spec:
                         type: string
                       type: array
                     commitMode:
-                      default: request
                       description: 'Specifies the GitOps commit mode. Valid values
                         are: - "direct": actions will produce commit directly within
                         the underlying repository without creating a pull/merge request;
@@ -88,6 +87,7 @@ spec:
                   required:
                   - commitMode
                   type: object
+                minItems: 1
                 type: array
             required:
             - config

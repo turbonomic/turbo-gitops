@@ -27,6 +27,39 @@ make manifests
 
 More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
 
+## Sample
+
+```yaml
+apiVersion: gitops.turbonomic.io/v1alpha1
+kind: GitOps
+metadata:
+  name: gitops-sample
+spec:
+  config:
+  - commitMode: direct
+    credentials: 
+        email: test@turbonomic.comm
+        secretName: gitops-secret
+        secretNamespace: gitops
+        username: turbo
+    apps:
+    - app-name-1
+    - app-name-2
+    
+``` 
+
+### Properties
+* `config`: (Required) A list of GitOps configurations that will overwrite the default Kubeturbo GitOps configurations.
+  * `commitMode`  (Required) describes the desired behavior for action executions. Options include:
+    * `request`: action execution will generate pull/merge requests to apply the changes
+    * `direct`: action execution will commit the changes directly to the target repo
+  * `credentials`: (Optional) override the default credentials provided to Kubeturbo for the target repo
+    * `email`: (Required) the email address to be used for operations against the target repo
+    * `username`: (Required) the name of the user to be used for operations against the target repo
+    * `secretName`: (Required) the name of the secret containing the repo credentials (token)
+    * `secretNamespace` (Required) the name of the namespace containing the secret referenced by the _secretName_ property
+  * `apps`: (Optional) a list of applications that the configuration should apply to. Omitting the propery or supplying an empty list will result in the configuration being applied to _all_ applications within the namepsace in which the CustomResource is deployed.
+
 ## License
 
 Copyright 2022.

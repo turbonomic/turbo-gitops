@@ -26,6 +26,8 @@ import (
 // GitOpsSpec defines the desired state of GitOps configuration
 type GitOpsSpec struct {
 	// Overrides the default GitOps configuration with custom configuration for the specified app(s).
+	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:MinItems:=1
 	Configutaion []Configuration `json:"config"`
 }
 
@@ -46,7 +48,6 @@ type Configuration struct {
 	// Valid values are:
 	// - "direct": actions will produce commit directly within the underlying repository without creating a pull/merge request;
 	// - "request": actions will result in a pull/merge request being creating within the underlying repository
-	// +kubebuilder:default:=request
 	CommitMode CommitMode `json:"commitMode"`
 	// Specifies the credentials for the underlying repository (CURRENTLY UNSUPPORTED)
 	// +optional
