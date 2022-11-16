@@ -1,0 +1,15 @@
+domain: turbonomic.io
+layout:
+- go.kubebuilder.io/v3
+projectName: turbo-gitops
+repo: github.com/turbonomic/turbo-gitops
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  domain: turbonomic.io
+  group: gitops
+  kind: GitOps
+  path: github.com/turbonomic/turbo-gitops/api/v1alpha1
+  version: v1alpha1
+version: "3"
