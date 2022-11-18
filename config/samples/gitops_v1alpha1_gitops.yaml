@@ -1,3 +1,4 @@
+---
 apiVersion: gitops.turbonomic.io/v1alpha1
 kind: GitOps
 metadata:
@@ -5,7 +6,29 @@ metadata:
 spec:
   config:
   - commitMode: direct
-    apps:
-    - app-name-1
-    - app-name-2
-    
+    selector: "*"
+---
+apiVersion: gitops.turbonomic.io/v1alpha1
+kind: GitOps
+metadata:
+  name: gitops-sample
+spec:
+  config:
+  - commitMode: direct
+    whitelist:
+    - app1
+    - app2
+---
+apiVersion: gitops.turbonomic.io/v1alpha1
+kind: GitOps
+metadata:
+  name: gitops-sample
+spec:
+  config:
+  - commitMode: direct
+    selector: "^turbo.*$"
+    credentials:
+      email: turbo@turbonomic.com
+      username: turbo
+      secretName: gitops-token
+      secretNamespace: turbonomic
