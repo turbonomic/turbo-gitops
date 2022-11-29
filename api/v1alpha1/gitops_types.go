@@ -65,7 +65,7 @@ type Configuration struct {
 type Credentials struct {
 	// Specifies the email address of the user from which commits/PRs will be created
 	// +kubebuilder:validation:Format=email
-	Email string `json:"email,omitempty"`
+	Email string `json:"email"`
 	// Specifies the name of the secret containing credentials for the repository
 	SecretName string `json:"secretName"`
 	// Specifies the namespace in which the secret containing the credentials exists
