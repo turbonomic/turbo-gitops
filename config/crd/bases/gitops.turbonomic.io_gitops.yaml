@@ -72,7 +72,6 @@ spec:
                             will be created by
                           type: string
                       required:
-                      - email
                       - secretName
                       - secretNamespace
                       - username

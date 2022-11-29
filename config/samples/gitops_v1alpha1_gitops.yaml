@@ -6,7 +6,7 @@ metadata:
 spec:
   config:
   - commitMode: direct
-    selector: "*"
+    selector: "^.*$"
 ---
 apiVersion: gitops.turbonomic.io/v1alpha1
 kind: GitOps
