@@ -40,13 +40,6 @@ spec:
                   configuration for the specified app(s).
                 items:
                   properties:
-                    apps:
-                      description: Specifies the applications that the commit mode
-                        should apply to (Optional - an empty list will apply to all
-                        applications within the namespace)
-                      items:
-                        type: string
-                      type: array
                     commitMode:
                       description: 'Specifies the GitOps commit mode. Valid values
                         are: - "direct": actions will produce commit directly within
@@ -84,6 +77,20 @@ spec:
                       - secretNamespace
                       - username
                       type: object
+                    selector:
+                      description: 'A regular expression against which applications
+                        will be checked. Application names that match the supplied
+                        expression will use the configuration supplied here. NOTE:
+                        the selector property is prioritzed over the whitelist.'
+                      type: string
+                    whitelist:
+                      description: 'A whitelist list of application names to which
+                        the configuration should apply. NOTE: the selector property
+                        is prioritzed over the whitelist.'
+                      items:
+                        type: string
+                      minItems: 1
+                      type: array
                   required:
                   - commitMode
                   type: object

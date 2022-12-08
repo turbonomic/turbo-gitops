@@ -28,7 +28,7 @@ type GitOpsSpec struct {
 	// Overrides the default GitOps configuration with custom configuration for the specified app(s).
 	// +kubebuilder:validation:Required
 	// +kubebuilder:validation:MinItems:=1
-	Configutaion []Configuration `json:"config"`
+	Configuration []Configuration `json:"config"`
 }
 
 // CommitMode describes how Turbonomic events will be processed.
@@ -52,9 +52,14 @@ type Configuration struct {
 	// Specifies the credentials for the underlying repository (CURRENTLY UNSUPPORTED)
 	// +optional
 	Credentials Credentials `json:"credentials,omitempty"`
-	// Specifies the applications that the commit mode should apply to (Optional - an empty list will apply to all
-	// applications within the namespace)
-	Applications []string `json:"apps,omitempty"`
+	// A regular expression against which applications will be checked. Application names that match the supplied expression
+	// will use the configuration supplied here.
+	// NOTE: the selector property is prioritzed over the whitelist.
+	Selector string `json:"selector,omitempty"`
+	// A whitelist list of application names to which the configuration should apply.
+	// NOTE: the selector property is prioritzed over the whitelist.
+	// +kubebuilder:validation:MinItems:=1
+	Whitelist []string `json:"whitelist,omitempty"`
 }
 
 type Credentials struct {
